@@ -31,6 +31,8 @@ Gem::Specification.new do |s|
   s.required_ruby_version  = '>= 1.9.3'
 
   s.add_runtime_dependency 'sensu-plugin'
+  s.add_runtime_dependency 'twilio-ruby'
+  s.add_runtime_dependency 'rest-client'
 
   s.add_development_dependency 'codeclimate-test-reporter'
   s.add_development_dependency 'rubocop', '~> 0.30'
