@@ -28,6 +28,7 @@ class TwilioSMS < Sensu::Handler
     auth_token = settings['twiliosms']['token']
     from_number = settings['twiliosms']['number']
     candidates = settings['twiliosms']['recipients']
+    short = settings['twiliosms']['short'] || false
 
     fail 'Please define a valid Twilio authentication set to use this handler' unless account_sid && auth_token && from_number
     fail 'Please define a valid set of SMS recipients to use this handler' if candidates.nil? || candidates.empty?
@@ -43,7 +44,12 @@ class TwilioSMS < Sensu::Handler
       end
     end
 
-    message = "Sensu #{action_to_string}: #{short_name} (#{@event['client']['address']}) #{@event['check']['output']}"
+    if short
+      message = "Sensu #{action_to_string}: #{@event['check']['output']}"
+    else
+      message = "Sensu #{action_to_string}: #{short_name} (#{@event['client']['address']}) #{@event['check']['output']}"
+    end
+    
     message[157..message.length] = '...' if message.length > 160
 
     twilio = Twilio::REST::Client.new(account_sid, auth_token)
