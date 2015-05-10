@@ -39,7 +39,7 @@ class TwilioSMS < Sensu::Handler
       if ((candidate['sensu_roles'].include?('all')) ||
           ((candidate['sensu_roles'] & @event['check']['subscribers']).size > 0) ||
           (candidate['sensu_checks'].include?(@event['check']['name']))) &&
-          (candidate['sensu_level'] >= @event['check']['status'])
+         (candidate['sensu_level'] >= @event['check']['status'])
         recipients << mobile
       end
     end
@@ -49,7 +49,7 @@ class TwilioSMS < Sensu::Handler
     else
       message = "Sensu #{action_to_string}: #{short_name} (#{@event['client']['address']}) #{@event['check']['output']}"
     end
-    
+
     message[157..message.length] = '...' if message.length > 160
 
     twilio = Twilio::REST::Client.new(account_sid, auth_token)
