@@ -29,6 +29,9 @@ class TwilioSMS < Sensu::Handler
     from_number = settings['twiliosms']['number']
     candidates = settings['twiliosms']['recipients']
     short = settings['twiliosms']['short'] || false
+    disableOk = settings['twiliosms']['disableOk'] || false
+
+    next if @event['action'].eql?('resolve') and disableOk
 
     fail 'Please define a valid Twilio authentication set to use this handler' unless account_sid && auth_token && from_number
     fail 'Please define a valid set of SMS recipients to use this handler' if candidates.nil? || candidates.empty?
