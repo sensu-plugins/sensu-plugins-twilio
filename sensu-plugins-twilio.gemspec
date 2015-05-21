@@ -12,33 +12,35 @@ end
 pvt_key = '~/.ssh/gem-private_key.pem'
 
 Gem::Specification.new do |s|
-  s.authors                = ['Sensu Plugins and contributors']
+  s.authors                = ['Sensu-Plugins and contributors']
   s.cert_chain             = ['certs/sensu-plugins.pem']
   s.date                   = Date.today.to_s
-  s.description            = 'Sensu plugins for working with Twilio'
+  s.description            = 'Sensu plugins for working with twilio'
   s.email                  = '<sensu-users@googlegroups.com>'
   s.executables            = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
   s.files                  = Dir.glob('{bin,lib}/**/*') + %w(LICENSE README.md CHANGELOG.md)
-  s.homepage               = 'https://github.com/sensu-plugins/sensu-plugins-consul'
+  s.homepage               = 'https://github.com/sensu-plugins/sensu-plugins-twilio'
   s.license                = 'MIT'
-  s.test_files             = s.files.grep(%r{^(test|spec|features)/})
-  s.require_paths          = ['lib']
-  s.cert_chain             = ['certs/sensu-plugins.pem']
-  s.signing_key            = File.expand_path(pvt_key) if $PROGRAM_NAME =~ /gem\z/
+  s.metadata               = { 'maintainer'         => '',
+                               'development_status' => 'active',
+                               'production_status'  => 'unstable - testing recommended',
+                               'release_draft'      => 'false',
+                               'release_prerelease' => 'false'
+  }
   s.name                   = 'sensu-plugins-twilio'
   s.platform               = Gem::Platform::RUBY
   s.post_install_message   = 'You can use the embedded Ruby by setting EMBEDDED_RUBY=true in /etc/default/sensu'
   s.require_paths          = ['lib']
   s.required_ruby_version  = '>= 1.9.3'
   s.signing_key            = File.expand_path(pvt_key) if $PROGRAM_NAME =~ /gem\z/
-  s.summary                = 'Sensu plugins for working with Twilio'
+  s.summary                = 'Sensu plugins for working with twilio'
   s.test_files             = s.files.grep(%r{^(test|spec|features)/})
-  s.version                = SensuPluginsTwilio::VERSION
+  s.version                = SensuPluginsTwilio::Version::VER_STRING
 
   s.add_runtime_dependency 'sensu-plugin', '1.1.0'
-  s.add_runtime_dependency 'twilio-ruby'
+  s.add_runtime_dependency 'twilio-ruby',  '4.2.0'
   s.add_runtime_dependency 'rest-client',  '1.8.0'
-  s.add_runtime_dependency 'nori'
+  s.add_runtime_dependency 'nori',         '2.6.0'
 
   s.add_development_dependency 'codeclimate-test-reporter', '~> 0.4'
   s.add_development_dependency 'rubocop',                   '~> 0.30'
