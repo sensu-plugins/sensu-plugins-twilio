@@ -35,7 +35,7 @@ class TwilioSMS < Sensu::Handler
 
     recipients = []
     # #YELLOW
-    candidates.each do |mobile, candidate|  # rubocop:disable Style/Next
+    candidates.each do |mobile, candidate| # rubocop:disable Style/Next
       if ((candidate['sensu_roles'].include?('all')) ||
           ((candidate['sensu_roles'] & @event['check']['subscribers']).size > 0) ||
           (candidate['sensu_checks'].include?(@event['check']['name']))) &&
