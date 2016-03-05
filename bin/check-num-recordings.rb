@@ -93,7 +93,7 @@ class TwilioRecordings < Sensu::Plugin::Check::CLI
     unknown "Received #{response.code} response code from Twilio checking account #{name}" if response.code != '200'
 
     # Parse Twilio XML
-    messages = Nori.new(advanced_typecasting: false, advanced_typecasting: false).parse(response.body)
+    messages = Nori.new(advanced_typecasting: false).parse(response.body)
     total = messages['TwilioResponse']['Recordings']['@total'].to_i
 
     if total >= config[:critical].to_i
