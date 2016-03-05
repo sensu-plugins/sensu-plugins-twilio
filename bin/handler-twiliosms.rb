@@ -30,24 +30,23 @@ class TwilioSMS < Sensu::Handler
     candidates = settings['twiliosms']['recipients']
     short = settings['twiliosms']['short'] || false
 
-    fail 'Please define a valid Twilio authentication set to use this handler' unless account_sid && auth_token && from_number
-    fail 'Please define a valid set of SMS recipients to use this handler' if candidates.nil? || candidates.empty?
+    raise 'Please define a valid Twilio authentication set to use this handler' unless account_sid && auth_token && from_number
+    raise 'Please define a valid set of SMS recipients to use this handler' if candidates.nil? || candidates.empty?
 
     recipients = []
     # #YELLOW
     candidates.each do |mobile, candidate| # rubocop:disable Style/Next
-      if ((candidate['sensu_roles'].include?('all')) ||
+      next unless (candidate['sensu_roles'].include?('all') ||
           ((candidate['sensu_roles'] & @event['check']['subscribers']).size > 0) ||
-          (candidate['sensu_checks'].include?(@event['check']['name']))) &&
-         (candidate['sensu_level'] >= @event['check']['status'])
-        recipients << mobile
-      end
+          candidate['sensu_checks'].include?(@event['check']['name'])) &&
+                  (candidate['sensu_level'] >= @event['check']['status'])
+      recipients << mobile
     end
 
-    if short
-      message = "Sensu #{action_to_string}: #{@event['check']['output']}"
-    else
-      message = "Sensu #{action_to_string}: #{short_name} (#{@event['client']['address']}) #{@event['check']['output']}"
+    message = if short
+                "Sensu #{action_to_string}: #{@event['check']['output']}"
+              else
+                "Sensu #{action_to_string}: #{short_name} (#{@event['client']['address']}) #{@event['check']['output']}"
     end
 
     message[157..message.length] = '...' if message.length > 160
