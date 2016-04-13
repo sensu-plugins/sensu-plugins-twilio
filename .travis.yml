@@ -24,7 +24,7 @@ deploy:
     secure: gMuxgppKnSouNgTmIsC4o717kiGt9ArP8RC8XsNi+uu9bGYoy2z78gm8QGH1MNgN8Kf6tp6x+PKf5zB881tQjzsbW3P4xMZf6AriqpUdPIodVQ7v49O9sNEao5WLk3uau1waCVGVbrs8Aru38x1MDwEChcSL86umeeU2xrKiZ9Y=
   gem: sensu-plugins-twilio
   on:
-    ags: true
+    tags: true
     all_branches: true
     rvm: 1.9.3
     rvm: 2.0
