@@ -40,7 +40,8 @@ class TwilioSMS < Sensu::Handler
     candidates.each do |mobile, candidate|
       next unless (candidate['sensu_roles'].include?('all') ||
           (@event['check']['name'].eql?('keepalive') && candidate['sensu_roles'].include?('keepalive')) ||
-          (@event['check']['subscribers'] && (candidate['sensu_roles'] & @event['check']['subscribers']).size > 0) || # rubocop:disable Style/ZeroLengthPredicate
+          (@event['check']['subscribers'] &&
+            (candidate['sensu_roles'] & @event['check']['subscribers']).size > 0) || # rubocop:disable Style/ZeroLengthPredicate
           candidate['sensu_checks'].include?(@event['check']['name'])) &&
                   (candidate['sensu_level'] >= @event['check']['status'])
       recipients << mobile
