@@ -15,6 +15,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ### Changed
 - update to rubocop 0.40 and cleanup
+- update to `twilio-ruby` 4.11.1
 
 ## [0.0.4] - 2016-04-26
 ### Fixed
