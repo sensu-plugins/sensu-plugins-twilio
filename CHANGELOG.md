@@ -4,7 +4,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+### Added
+- Ruby 2.3.0 support
+
+### Removed
+- Ruby 1.9.3 support
+
+### Fixed
 - handle case when event data does not have a subscribers property (Enables keepalive event handling support)
+
+### Changed
+- update to rubocop 0.40 and cleanup
 
 ## [0.0.4] - 2016-04-26
 ### Fixed
