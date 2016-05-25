@@ -4,6 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+- handle case when event data does not have a subscribers property (Enables keepalive event handling support)
 
 ## [0.0.4] - 2016-04-26
 ### Fixed
