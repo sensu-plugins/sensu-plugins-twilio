@@ -24,12 +24,17 @@
       "+11111111111": {
         "sensu_roles":[ "web-server" ], // subscribers
         "sensu_checks":[], // checks
-        "sensu_level": 1 // 1 for warnging, 2 for critical alerts
+        "sensu_level": [1] // 1 for warning only
       },
       "+11111222222": {
         "sensu_roles":[],
         "sensu_checks":[ "mysql-alive" ],
-        "sensu_level": 2
+        "sensu_level": [2] // 2 for critical only
+      },
+      "+11111333333": {
+        "sensu_roles":[],
+        "sensu_checks":[ "mysql-alive" ],
+        "sensu_level": [1, 2] // 1 and 2 for warnings and criticals
       }
     }
   }
