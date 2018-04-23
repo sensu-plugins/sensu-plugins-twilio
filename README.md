@@ -13,28 +13,39 @@
  * bin/handler-twiliosms.rb
 
 ## Usage
-
+twilio_handler.json
 ```
 {
   "twiliosms":{
-    "token":"a9d8ag98daf98ga9fd8g",
-    "number":"+111111111",
-    "sid":"AC0ds98gd098gf09d8fg",
+    "token":"a9d8ag98daf98ga9fd8g", //Twilio Token
+    "number":"+111111111", //Twilio Phone Numbewr
+    "sid":"AC0ds98gd098gf09d8fg", //Twilio SID
+    "short": "true", //Optional to send shorter SMS alerts with less details
     "recipients":{
       "+11111111111": {
-        "sensu_roles":[ "web-server" ], // subscribers
-        "sensu_checks":[], // checks
-        "sensu_level": 1 // 1 for warnging, 2 for critical alerts
       },
       "+11111222222": {
-        "sensu_roles":[],
-        "sensu_checks":[ "mysql-alive" ],
-        "sensu_level": 2
       }
     }
   }
 }
 ```
+
+check.json
+```
+{
+  "checks": {
+    "website_check": {
+      "command": "check-http.rb ",
+      ...
+      "interval": 15, //Interval between checks
+      "occurrences": 2, //Number of check failures before alerting
+      "refresh": 300, //Number of seconds before notification if check is still failing
+      "handlers": ["twiliosms"]
+    }
+  }
+}
+
 ## Installation
 
 [Installation and Setup](http://sensu-plugins.io/docs/installation_instructions.html)

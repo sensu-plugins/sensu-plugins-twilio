@@ -7,6 +7,10 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - Ruby 2.4.1 testing
 
+## [1.0.1] - 2018-04-23
+- Removed built in handler filtering. See http://bit.ly/sensu-plugin
+- Updated README to show new settings and gave example check with new filtering parameters.
+ 
 ## [1.0.0] - 2016-05-24
 ### Added
 - Ruby 2.3.0 support
