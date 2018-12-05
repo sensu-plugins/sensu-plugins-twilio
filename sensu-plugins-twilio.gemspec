@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
   s.test_files             = s.files.grep(%r{^(test|spec|features)/})
   s.version                = SensuPluginsTwilio::Version::VER_STRING
 
-  s.add_runtime_dependency 'sensu-plugin', '~> 1.2'
+  s.add_runtime_dependency 'sensu-plugin', '>= 1.2', '< 4.0'
   s.add_runtime_dependency 'twilio-ruby',  '4.11.1'
   s.add_runtime_dependency 'rest-client',  '1.8.0'
   s.add_runtime_dependency 'nori',         '2.6.0'
