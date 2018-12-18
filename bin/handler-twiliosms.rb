@@ -37,14 +37,13 @@ class TwilioSMS < Sensu::Handler
     raise 'Please define a valid set of SMS recipients to use this handler' if candidates.nil? || candidates.empty?
 
     recipients = []
-    candidates.each do |mobile, candidate|
-      next unless (candidate['sensu_roles'].include?('all') ||
-          (@event['check']['name'].eql?('keepalive') && candidate['sensu_roles'].include?('keepalive')) ||
-          (@event['check']['subscribers'] &&
-            (candidate['sensu_roles'] & @event['check']['subscribers']).size > 0) || # rubocop:disable Style/ZeroLengthPredicate
-          candidate['sensu_checks'].include?(@event['check']['name'])) &&
-                  (candidate['sensu_level'] >= @event['check']['status'])
-      recipients << mobile
+    candidates.each do |mobile|
+     (@event['check']['name'].eql?('keepalive') && candidate['sensu_roles'].include?('keepalive')) ||
+     (@event['check']['subscribers'] &&
+     (candidate['sensu_roles'] & @event['check']['subscribers']).size > 0) || # rubocop:disable Style/ZeroLengthPredicate
+      candidate['sensu_checks'].include?(@event['check']['name'])) &&
+              (candidate['sensu_level'] >= @event['check']['status'])
+     recipients << mobile
     end
 
     message = if short

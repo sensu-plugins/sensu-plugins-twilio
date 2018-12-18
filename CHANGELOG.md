@@ -7,6 +7,12 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - Ruby 2.4.1 testing
 
+## [Unreleased]
+### Breaking Changes
+- Removed built in handler filtering. See http://bit.ly/sensu-plugin
+- Removed plugin logic to filter messages based on Sensu Roles, Checks, and Levels. This logic has now moved to being specified in the Sensu Check using the fuctionality there. 
+- Updated README to show new settings and gave example check with new filtering parameters.
+ 
 ## [1.0.0] - 2016-05-24
 ### Added
 - Ruby 2.3.0 support
