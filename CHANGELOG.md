@@ -5,7 +5,28 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## [Unreleased]
 ### Added
+- Bump sensu-plugin runtime dep to 3.0 with Sensu Go to Sensu Core 1.x migration option (@jspaleta)
 - Ruby 2.4.1 testing
+- Ruby 2.5.1 testing (@jspaleta)
+
+### Breaking Changes
+- Dropped 2.0 ruby testing (@jspaleta)
+- Dropped 2.1 ruby testing (@jspaleta)
+- Dropped 2.2 ruby testing (@jspaleta)
+- Set required_ruby_version in gemspec to >= 2.3.0 (@jspaleta)
+
+### Changed
+- Bump twilio runtime dep to 5.17.0 (@jspaleta)
+- Bump rest-client runtime dep to 2.0.2 (@jspaleta)
+- Bump codeclimate development dep to 1.0 (@jspaleta)
+- Bump rake development dep to 12.3 (@jspaleta)
+- Bump rubocop development dep to 0.61.1 (@jspaleta)
+- Bump yard development dep to 0.9.11 (@jspaleta)
+- Added explict rdoc development dep needed for ruby 2.5.1 (@jspaleta)
+- Updated .rubocop.yml to disable unneeded warning messages (@jspaleta)
+- Updated Rakefile and introduce quick task (@jspaleta)
+- Updated .travis.yml to use quick task (@jspaleta)
+- Clean up robucop warnings (@jspaleta)
 
 ## [1.0.0] - 2016-05-24
 ### Added
