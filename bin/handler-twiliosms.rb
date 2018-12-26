@@ -44,6 +44,7 @@ class TwilioSMS < Sensu::Handler
             (candidate['sensu_roles'] & @event['check']['subscribers']).size > 0) || # rubocop:disable Style/ZeroLengthPredicate
           candidate['sensu_checks'].include?(@event['check']['name'])) &&
                   (candidate['sensu_level'] >= @event['check']['status'])
+
       recipients << mobile
     end
 
@@ -64,7 +65,7 @@ class TwilioSMS < Sensu::Handler
           body: message
         )
         puts "Notified #{recipient} for #{action_to_string}"
-      rescue => e
+      rescue StandardErorr => e
         puts "Failure detected while using Twilio to notify on event: #{e.message}"
       end
     end

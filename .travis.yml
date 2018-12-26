@@ -4,11 +4,9 @@ cache:
 install:
 - bundle install
 rvm:
-- 2.0
-- 2.1
-- 2.2
 - 2.3.0
 - 2.4.1
+- 2.5.1
 notifications:
   email:
     recipients:
@@ -16,7 +14,7 @@ notifications:
     on_success: change
     on_failure: always
 script:
-- bundle exec rake default
+- bundle exec rake quick
 - gem build sensu-plugins-twilio.gemspec
 - gem install sensu-plugins-twilio-*.gem
 deploy:
@@ -27,9 +25,7 @@ deploy:
   on:
     tags: true
     all_branches: true
-    rvm: 2.0
-    rvm: 2.1
-    rvm: 2.2
     rvm: 2.3.0
     rvm: 2.4.1
+    rvm: 2.5.1
     repo: sensu-plugins/sensu-plugins-twilio

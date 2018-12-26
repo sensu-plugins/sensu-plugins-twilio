@@ -1,3 +1,8 @@
+AllCops:
+  TargetRubyVersion: 2.3
+
+BlockLength:
+  Max: 40
 
 MethodLength:
   Max: 200
@@ -27,4 +32,13 @@ RegexpLiteral:
   Enabled: false
 
 Style/Documentation:
+  Enabled: false
+
+Layout/AlignHash:
+  EnforcedHashRocketStyle: table 
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/NumericPredicate:
   Enabled: false
