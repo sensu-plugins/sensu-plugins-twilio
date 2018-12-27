@@ -22,9 +22,9 @@
     "sid":"AC0ds98gd098gf09d8fg",
     "recipients":{
       "+11111111111": {
-        "sensu_roles":[ "web-server" ], // subscribers
-        "sensu_checks":[], // checks
-        "sensu_level": 1 // 1 for warnging, 2 for critical alerts
+        "sensu_roles":[ "web-server" ],
+        "sensu_checks":[],
+        "sensu_level": 1
       },
       "+11111222222": {
         "sensu_roles":[],
@@ -35,6 +35,23 @@
   }
 }
 ```
+`token`, `sid`, and `number` from twilio account configuration.
+
+`sensu_checks` -> matching checks
+
+`sensu_roles` -> matching subscribers or special values:
+
+* `all` matches all events
+* `keepalive` matches keepalive events
+
+`sensu_level` -> minimum matching check return status value
+
+* `0` -> ok
+* `1` -> warning
+* `2` -> critical
+* `3` -> unknown
+
+
 ## Installation
 
 [Installation and Setup](http://sensu-plugins.io/docs/installation_instructions.html)
