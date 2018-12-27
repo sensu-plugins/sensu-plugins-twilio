@@ -8,6 +8,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 - Bump sensu-plugin runtime dep to 3.0 with Sensu Go to Sensu Core 1.x migration option (@jspaleta)
 - Ruby 2.4.1 testing
 - Ruby 2.5.1 testing (@jspaleta)
+- Added --verbose cmdline switch to aid in local testing
+- Added --disable_send cmdline switch to aid in local testing
 
 ### Breaking Changes
 - Dropped 2.0 ruby testing (@jspaleta)
@@ -27,6 +29,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 - Updated Rakefile and introduce quick task (@jspaleta)
 - Updated .travis.yml to use quick task (@jspaleta)
 - Clean up robucop warnings (@jspaleta)
+- Updated README.md with clearer explanation concerning config
+
 
 ## [1.0.0] - 2016-05-24
 ### Added
