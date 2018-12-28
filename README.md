@@ -46,10 +46,10 @@
 
 `sensu_level` -> minimum matching check return status value
 
-* `0` -> ok
-* `1` -> warning
-* `2` -> critical
-* `3` -> unknown
+* `0` -> activate for all check statuses: ok+warning+critical+unknown
+* `1` -> activate for warning+critical+unknown
+* `2` -> activate for critical+unknown
+* `3` -> activate for unknown
 
 
 ## Installation
