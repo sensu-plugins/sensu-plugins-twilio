@@ -32,11 +32,11 @@ class TwilioSMS < Sensu::Handler
   end
 
   def output
-    (@event['check']['output'] || 'no check output')
+    @event['check']['output'] || 'no check output'
   end
 
   def address
-    (@event['client']['address'] || 'unknown address')
+    @event['client']['address'] || 'unknown address'
   end
 
   def check_name
@@ -45,14 +45,14 @@ class TwilioSMS < Sensu::Handler
 
   def check_status
     check_status = @event['check']['status'] if @event.include? 'check'
-    check_status || -1
+    check_status || 3
   end
 
   def action_to_string
     @event['action'].eql?('resolve') ? 'RESOLVED' : 'ALERT'
   end
 
-  def match(candidate)
+  def event_match?(candidate)
     matching = false
     sensu_role_all = candidate['sensu_roles'].include?('all')
     puts " sensu_roles includes all: #{sensu_role_all}" if config[:verbose]
@@ -62,7 +62,7 @@ class TwilioSMS < Sensu::Handler
     puts " matching keepalive: #{(sensu_role_keepalive && keepalive_check)}" if config[:verbose]
     matching ||= (sensu_role_keepalive && keepalive_check)
     matching_subscribers = (@event['check']['subscribers'] &&
-          (candidate['sensu_roles'] & @event['check']['subscribers']).size > 0)
+          !(candidate['sensu_roles'] & @event['check']['subscribers']).empty?)
     matching_subscribers ||= false
     puts " matching_subscribers: #{matching_subscribers}" if config[:verbose]
     matching ||= matching_subscribers
@@ -88,7 +88,7 @@ class TwilioSMS < Sensu::Handler
     recipients = []
     candidates.each do |mobile, candidate|
       puts "Mobile: #{mobile} Config:#{candidate}" if config[:verbose]
-      next unless match(candidate) && (candidate['sensu_level'] >= check_status)
+      next unless event_match?(candidate) && (candidate['sensu_level'] >= check_status)
 
       puts "Send text to: #{mobile}" if config[:verbose]
       recipients << mobile
