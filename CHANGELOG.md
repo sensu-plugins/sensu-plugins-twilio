@@ -19,7 +19,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 - Set required_ruby_version in gemspec to >= 2.3.0 (@jspaleta)
 
 ### Changed
-- Bump twilio runtime dep to 5.17.0 (@jspaleta)
+- Bump twilio runtime dep to 5.18.0 (@jspaleta)
 - Bump codeclimate development dep to 1.0 (@jspaleta)
 - Bump rake development dep to 12.3 (@jspaleta)
 - Bump rubocop development dep to 0.61.1 (@jspaleta)
