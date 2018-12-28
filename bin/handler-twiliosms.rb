@@ -63,6 +63,7 @@ class TwilioSMS < Sensu::Handler
     matching ||= (sensu_role_keepalive && keepalive_check)
     matching_subscribers = (@event['check']['subscribers'] &&
           (candidate['sensu_roles'] & @event['check']['subscribers']).size > 0)
+    matching_subscribers ||= false
     puts " matching_subscribers: #{matching_subscribers}" if config[:verbose]
     matching ||= matching_subscribers
     matching_checkname = candidate['sensu_checks'].include?(check_name)
@@ -83,10 +84,10 @@ class TwilioSMS < Sensu::Handler
     raise 'Please define a valid Twilio authentication set to use this handler' unless account_sid && auth_token && from_number
     raise 'Please define a valid set of SMS recipients to use this handler' if candidates.nil? || candidates.empty?
 
+    puts "Check: #{@event['check']}" if config[:verbose]
     recipients = []
-    puts "Checkname: #{check_name}" if config[:verbpse]
     candidates.each do |mobile, candidate|
-      puts "matching conditions for #{mobile}:" if config[:verbose]
+      puts "Mobile: #{mobile} Config:#{candidate}" if config[:verbose]
       next unless match(candidate) && (candidate['sensu_level'] >= check_status)
 
       puts "Send text to: #{mobile}" if config[:verbose]
