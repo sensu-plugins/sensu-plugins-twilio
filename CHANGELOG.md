@@ -15,11 +15,11 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 - Dropped 2.0 ruby testing (@jspaleta)
 - Dropped 2.1 ruby testing (@jspaleta)
 - Dropped 2.2 ruby testing (@jspaleta)
+- Dropped rest-client runtime dep, no longer needed (@jspaleta)
 - Set required_ruby_version in gemspec to >= 2.3.0 (@jspaleta)
 
 ### Changed
-- Bump twilio runtime dep to 5.17.0 (@jspaleta)
-- Bump rest-client runtime dep to 2.0.2 (@jspaleta)
+- Bump twilio runtime dep to 5.18.0 (@jspaleta)
 - Bump codeclimate development dep to 1.0 (@jspaleta)
 - Bump rake development dep to 12.3 (@jspaleta)
 - Bump rubocop development dep to 0.61.1 (@jspaleta)

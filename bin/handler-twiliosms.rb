@@ -85,10 +85,19 @@ class TwilioSMS < Sensu::Handler
     raise 'Please define a valid set of SMS recipients to use this handler' if candidates.nil? || candidates.empty?
 
     puts "Check: #{@event['check']}" if config[:verbose]
+    puts "Check Status: #{check_status}" if config[:verbose]
     recipients = []
     candidates.each do |mobile, candidate|
       puts "Mobile: #{mobile} Config:#{candidate}" if config[:verbose]
-      next unless event_match?(candidate) && (candidate['sensu_level'] >= check_status)
+
+      ##
+      # Match event subsciption and/or check name using event_match? method
+      #  and require requested level  <= check_status:
+      #    sensu_level == 0  Matches all status
+      #    sensu_level == 1  Matches warnings+critical+unknown
+      #    sensu_level == 2  Matches critical+unknown
+      #    sensu_level == 3  Matches unknown
+      next unless event_match?(candidate) && (candidate['sensu_level'] <= check_status)
 
       puts "Send text to: #{mobile}" if config[:verbose]
       recipients << mobile
@@ -96,7 +105,7 @@ class TwilioSMS < Sensu::Handler
     message = if short
                 "Sensu #{action_to_string}: #{output}"
               else
-                "Sensu #{action_to_string}: #{short_name} (#{address}) #{output}"
+                "Sensu #{action_to_string}: Status: #{check_status} :: #{short_name} (#{address}) #{output}"
               end
 
     message[157..message.length] = '...' if message.length > 160
@@ -107,13 +116,13 @@ class TwilioSMS < Sensu::Handler
         puts "From: #{from_number} To: #{recipient} Body: #{message}"
       else
         begin
-          twilio.account.messages.create(
+          twilio.api.account.messages.create(
             from: from_number,
             to: recipient,
             body: message
           )
           puts "Notified #{recipient} for #{action_to_string}"
-        rescue StandardErorr => e
+        rescue StandardError => e
           puts "Failure detected while using Twilio to notify on event: #{e.message}"
         end
       end
