@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
   s.version                = SensuPluginsTwilio::Version::VER_STRING
 
   s.add_runtime_dependency 'nori',         '2.6.0'
-  s.add_runtime_dependency 'sensu-plugin', '~> 3.0'
+  s.add_runtime_dependency 'sensu-plugin', '>= 3', '< 5'
   s.add_runtime_dependency 'twilio-ruby',  '5.18.0'
 
   s.add_development_dependency 'bundler',                   '~> 1.7'
