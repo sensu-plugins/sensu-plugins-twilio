@@ -41,6 +41,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rdoc',                      '~> 6.0'
   s.add_development_dependency 'redcarpet',                 '~> 3.2'
   s.add_development_dependency 'rspec',                     '~> 3.4'
-  s.add_development_dependency 'rubocop',                   '~> 0.61.1'
+  s.add_development_dependency 'rubocop',                   '~> 0.76.0'
   s.add_development_dependency 'yard',                      '~> 0.9.11'
 end
