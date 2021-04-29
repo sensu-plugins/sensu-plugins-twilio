@@ -1,0 +1,13 @@
+version: 2
+updates:
+- package-ecosystem: bundler
+  directory: "/"
+  schedule:
+    interval: daily
+  ignore:
+  - dependency-name: twilio-ruby
+    versions:
+    - 5.46.1
+    - 5.47.0
+    - 5.48.0
+    - 5.49.0
